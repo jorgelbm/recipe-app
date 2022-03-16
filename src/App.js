@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import styled from 'styled-components'
+import {Link, Outlet} from 'react-router-dom'
 
+const Navbar = styled.nav`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0.5em 0.3em;
+  `;
+
+  const NavbarLink = styled.h1`
+    font-size: 1.125rem;
+    color: black;
+  `
+  
 function App() {
+
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Navbar>
+        <Link to="/almoco">
+          <NavbarLink>Almoco</NavbarLink>
+        </Link>
+        <Link to="/cafe-da-manha">
+          <NavbarLink>Café da manhã</NavbarLink>
+        </Link>
+        <Link to="/jantar">
+          <NavbarLink>Jantar</NavbarLink>
+        </Link>
+      </Navbar>
+      <Outlet />
     </div>
+    // <Wrapper>
+    //   <Title>
+    //     Hello World!
+    //   </Title>
+    // </Wrapper>
   );
 }
 
