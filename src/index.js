@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import './index.css';
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import App from './App';
 import CafeDaManha from './routes/cafeDaManha'
 import Almoco from './routes/almoco';
