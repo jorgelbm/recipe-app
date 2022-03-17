@@ -2,47 +2,43 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from 'styled-components'
 import RecipeCard from "./RecipeCard";
+import SearchBox from "../components/SearchBox"
 
 
 const Subtitulo = styled.h2`
         font-size: 1.8rem;
         color: #2B2D42;
     `
-    const DivReceitas = styled.div`
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        flex-wrap: wrap;
-    `
+const DivReceitas = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    flex-wrap: wrap;
+`
 
 export default function RecipesList(){
 
     const [meals, setMeals] = useState([])
-
+    const [search, setSearch] = useState('')
     const axios = require('axios');
 
     useEffect(
         () =>{
-            // Faz uma requisição a um usuarío com um ID expecifico
-            axios.get('https://www.themealdb.com/api/json/v1/1/search.php?s=arr')
-                .then((response) => {
-                    // manipula o sucesso da requisição
-                    console.log(response.data.meals)
-                    const response_data = response.data.meals
-                    setMeals(response_data);
-                
-                })
-                .catch((error) => {
-                    // manipula erros da requisição
-                    console.error(error);
-                }
-            )
+            const fetchSearch = async () => {
+                const res = await axios.get(
+                    `https://www.themealdb.com/api/json/v1/1/search.php?s=${search}`
+                );
+                const meals = await res.data.meals;
+                setMeals(meals)
+                };
+            fetchSearch();
         }, []);
         
 
     
     return(
-        <div>
+        <div style={{width: '100'}}>
+            <SearchBox setSearch={setSearch} meals={meals} setMeals={setMeals}></SearchBox>
             <Subtitulo>Lista de Receitas</Subtitulo>
             <DivReceitas>
                 {
