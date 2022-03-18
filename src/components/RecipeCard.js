@@ -31,9 +31,9 @@ export default function RecipeCard(props){
             <Imagem src={props.meal.strMealThumb} />
             <Titulo>{props.meal.strMeal}</Titulo>
             <Descricao>
-                <p>Origem: {props.meal.strArea}</p>
-                <p>Categoria: {props.meal.strCategory}</p>
-                <p>Tags: {props.meal.strTags}</p>
+                <p><i className='bi-flag'></i> {props.meal.strArea}</p>
+                <p>Category: {props.meal.strCategory}</p>
+                <p><i className='bi-tags'></i> {props.meal.strTags ? props.meal.strTags : 'No tags'}</p>
             </Descricao>
         </Card>
     )
