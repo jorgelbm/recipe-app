@@ -7,16 +7,14 @@ import App from './App';
 import CafeDaManha from './routes/cafeDaManha'
 import Almoco from './routes/almoco';
 import Janta from './routes/janta';
+import Meals from './routes/meals'
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      <Route path="/" element={<App />}>
-        <Route path="cafe-da-manha" element={<CafeDaManha/>}/>
-        <Route path="almoco" element={<Almoco />}/>
-        <Route path="jantar" element={<Janta />}/>
-      </Route>
+      <Route path="/" element={<App />}></Route>
+      <Route path="meals/:searchQuery" element={<Meals />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')

@@ -13,21 +13,27 @@ const DivReceitas = styled.div`
     flex-wrap: wrap;
 `
 
-export default function RecipesList(){
+export default function FavoritesRecipesList(props){
 
+    const [mealsIdList, setMealsIdList] = useState(props.favoriteMeals)
     const [meals, setMeals] = useState([])
-    let params = useParams()
 
     useEffect(
         () =>{
+            
             const fetchSearch = async () => {
-                const res = await axios.get(
-                    `https://www.themealdb.com/api/json/v1/1/search.php?s=${params.searchQuery}`
-                );
-                const meals = await res.data.meals;
-                setMeals(meals)
+                let fetch_array = []
+
+                for (const mealId of mealsIdList){
+                    const res = await axios.get(
+                        `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
+                    );
+                    fetch_array = [...fetch_array, res.data.meals[0]]
+                }
+
+                setMeals(fetch_array)
                 };
-            fetchSearch();
+            fetchSearch()
         }, []);
         
 

@@ -1,41 +1,17 @@
+import { useState } from 'react';
 import styled from 'styled-components'
-import {Link, Outlet} from 'react-router-dom'
+import FavoritesRecipesList from './components/FavoritesRecipesList';
+import RecipesList from './components/RecipesList';
+import SearchBox from './components/SearchBox';
+import SiteNavbar from './components/SiteNavbar';
 
 const Container = styled.div`
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: center;
     align-items:center;
     width: 100%;
     max-width: 1080px;
-`
-const Navbar = styled.nav`
-    
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-item:center;
-    padding: 0.5em 0.3em;
-
-    background-color: #EF233C;
-    color: #EDF2F4;
-  `;
-
-const NavbarLogo = styled.h1`
-    font-size: 2rem;
-    margin: 0;
-`
-const NavbarLinkList = styled.ul`
-  display: flex;
-  justify-content: space-between;
-  align-items:center;
-  list-style: none;
-`
-
-const NavbarLink = styled.li`
-  padding: 0 0.5em;
-  font-size: 1.125rem;
-  color: black;
 `
 
 const Main = styled.main`
@@ -44,26 +20,37 @@ const Main = styled.main`
   flex-direction: column;
   align-items: center;
 `
-  
+const SearchDiv = styled.div`
+  width: 100%;
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+`  
+const Titulo = styled.h1`
+  font-size: 2.5rem;
+`
+const FavoritesRecipes = styled.div`
+
+` 
 function App() {
 
-  
+  const [favoriteMeals, setFavoriteMeals] = useState([52772,52771, 52773])
+
   return (
 
       <div>
-        <Navbar>
-          <Container>
-          <NavbarLogo>Food</NavbarLogo>
-          <NavbarLinkList>
-            <NavbarLink><Link to="/almoco" style={{textDecoration: 'none', color: '#EDF2F4'}}>Almoco</Link></NavbarLink>
-            <NavbarLink><Link to="/cafe-da-manha" style={{textDecoration: 'none', color: '#EDF2F4'}}>Café da manhã</Link></NavbarLink>
-            <NavbarLink><Link to="/jantar" style={{textDecoration: 'none', color: '#EDF2F4'}}>Jantar</Link></NavbarLink>
-          </NavbarLinkList>
-          </Container>
-        </Navbar>
+        <SiteNavbar></SiteNavbar>
         <Main>
           <Container>
-            <Outlet />
+           <SearchDiv>
+             <Titulo>Search a meal</Titulo>
+             <SearchBox></SearchBox>
+           </SearchDiv>
+           <FavoritesRecipes>
+             <Titulo>Favorites Recipes</Titulo>
+             <FavoritesRecipesList favoriteMeals={favoriteMeals}></FavoritesRecipesList>
+           </FavoritesRecipes>
+
           </Container>
         </Main>
       </div>

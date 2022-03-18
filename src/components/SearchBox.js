@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 import axios from 'axios'
-
+import { Link } from 'react-router-dom'
+import { useState } from 'react'
 const SearchDiv = styled.div`
     display: flex;
     margin: 0;
@@ -28,27 +29,32 @@ const SearchButton = styled.button`
     cursor: pointer;
 `
 
-export default function SearchBox(props){
+export default function SearchBox(){
 
-    const handleSearch = () => {
-        const searchInput = document.getElementById('search-input')
-        const inputValue = searchInput.value
-        const fetchSearch = async () => {
-            const res = await axios.get(
-                `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`
-            );
-            const meals = await res.data.meals;
-            props.setMeals(meals)
-            };
-        fetchSearch();
-    }
+    // const handleSearch = () => {
+    //     const searchInput = document.getElementById('search-input')
+    //     const inputValue = searchInput.value
+    //     const fetchSearch = async () => {
+    //         const res = await axios.get(
+    //             `https://www.themealdb.com/api/json/v1/1/search.php?s=${inputValue}`
+    //         );
+    //         const meals = await res.data.meals;
+    //         props.setMeals(meals)
+    //         };
+    //     fetchSearch();
+    // }
+    const [query, setQuery] = useState('')
+
+
 
     return(
         <SearchDiv>
-            <TextInput id='search-input'></TextInput>
-            <SearchButton onClick={handleSearch}>
-                <i className="bi bi-search"></i>
-            </SearchButton>
+            <TextInput id='search-input' onChange={ (e) => setQuery(e.target.value)}></TextInput>
+            <Link to={`/meals/${query}`}>
+                <SearchButton>
+                    <i className="bi bi-search"></i>
+                </SearchButton>
+            </Link>
         </SearchDiv>
     )
 }
