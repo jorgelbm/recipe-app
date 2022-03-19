@@ -13,16 +13,17 @@ const DivReceitas = styled.div`
     flex-wrap: wrap;
 `
 
-export default function RecipesList(){
+export default function RecipesList(props){
 
     const [meals, setMeals] = useState([])
+    const [isSearch, setIsSearch] = useState(props.isSearch)
     let params = useParams()
 
     useEffect(
         () =>{
             const fetchSearch = async () => {
                 const res = await axios.get(
-                    `https://www.themealdb.com/api/json/v1/1/search.php?s=${params.searchQuery}`
+                    isSearch ? `https://www.themealdb.com/api/json/v1/1/search.php?s=${params.searchQuery}` : 'https://www.themealdb.com/api/json/v1/1/random.php'
                 );
                 const meals = await res.data.meals;
                 setMeals(meals)
