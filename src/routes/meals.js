@@ -5,20 +5,23 @@ import SiteNavbar from "../components/SiteNavbar";
 const Container = styled.div`
     margin: 0 auto;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items:center;
+    flex-direction: column;
+    justify-content: center;
+    align-items: space-between;
     width: 100%;
     max-width: 1080px;
 `
-
+const Titulo = styled.h1`
+  font-size: 2.5rem;
+`
 export default function Meals(){
 
     return(
         <main>
             <SiteNavbar></SiteNavbar>
             <Container>
-                <RecipesList></RecipesList>
+                <Titulo>Results</Titulo>
+                <RecipesList isSearch={true}></RecipesList>
             </Container>
         </main>
     )

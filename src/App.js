@@ -30,8 +30,11 @@ const Titulo = styled.h1`
   font-size: 2.5rem;
 `
 const FavoritesRecipes = styled.div`
-
+  width:100%;
 ` 
+const RandomRecipes = styled.div`
+  width: 100%;
+`
 function App() {
 
   const [favoriteMeals, setFavoriteMeals] = useState([52772,52771, 52773])
@@ -42,15 +45,18 @@ function App() {
         <SiteNavbar></SiteNavbar>
         <Main>
           <Container>
-           <SearchDiv>
-             <Titulo>Search a meal</Titulo>
-             <SearchBox></SearchBox>
-           </SearchDiv>
-           <FavoritesRecipes>
-             <Titulo>Favorites Recipes</Titulo>
-             <FavoritesRecipesList favoriteMeals={favoriteMeals}></FavoritesRecipesList>
-           </FavoritesRecipes>
-
+            <SearchDiv>
+              <Titulo>Search a meal</Titulo>
+              <SearchBox></SearchBox>
+            </SearchDiv>
+            <FavoritesRecipes>
+              <Titulo>Favorites Recipes</Titulo>
+              <FavoritesRecipesList favoriteMeals={favoriteMeals}></FavoritesRecipesList>
+            </FavoritesRecipes>
+            <RandomRecipes>
+              <Titulo>Random Recipe</Titulo>
+              <RecipesList></RecipesList>
+            </RandomRecipes>
           </Container>
         </Main>
       </div>

@@ -7,6 +7,7 @@ import SearchBox from "../components/SearchBox"
 
 
 const DivReceitas = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -39,16 +40,14 @@ export default function FavoritesRecipesList(props){
 
     
     return(
-        <div style={{width: '100'}}>
-            <DivReceitas>
-                {
-                    meals.map(
-                        (meal)=>{
-                            return <RecipeCard key={meal.idMeal} meal={meal} />
-                        }
-                    )
-                }
-            </DivReceitas>
-        </div>
+        <DivReceitas>
+            {
+                meals.map(
+                    (meal)=>{
+                        return <RecipeCard key={meal.idMeal} meal={meal} />
+                    }
+                )
+            }
+        </DivReceitas>
     )
 }
