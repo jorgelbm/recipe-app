@@ -8,6 +8,7 @@ import CafeDaManha from './routes/cafeDaManha'
 import Almoco from './routes/almoco';
 import Janta from './routes/janta';
 import Meals from './routes/meals'
+import Meal from './routes/meal';
 import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
@@ -15,6 +16,7 @@ ReactDOM.render(
     <Routes>
       <Route path="/" element={<App />}></Route>
       <Route path="meals/:searchQuery" element={<Meals />} />
+      <Route path="meal/:idMeal" element={<Meal />} />
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
