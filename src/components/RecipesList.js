@@ -39,7 +39,7 @@ export default function RecipesList(props){
                 {
                     meals.map(
                         (meal)=>{
-                            return(<Link to={`/meal/${meal.idMeal}`} key={meal.idMeal}> <RecipeCard  meal={meal} /> </Link>)
+                            return(<Link to={`/meal/${meal.idMeal}`} key={meal.idMeal} style={{textDecoration: 'none'}}> <RecipeCard  meal={meal} /> </Link>)
                         }
                     )
                 }
