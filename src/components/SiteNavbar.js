@@ -42,7 +42,9 @@ export default function SiteNavbar(){
     return(
         <Navbar>
           <Container>
-          <NavbarLogo>Food</NavbarLogo>
+          <NavbarLogo>
+            <img src={process.env.PUBLIC_URL + '/recipes_app_logo.png'} style={{width: '75px'}}></img>
+          </NavbarLogo>
           <NavbarLinkList>
             <NavbarLink><Link to="/almoco" style={{textDecoration: 'none', color: '#EDF2F4'}}>Almoco</Link></NavbarLink>
             <NavbarLink><Link to="/cafe-da-manha" style={{textDecoration: 'none', color: '#EDF2F4'}}>Café da manhã</Link></NavbarLink>
