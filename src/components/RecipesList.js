@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams , Link} from "react-router-dom";
 import axios from "axios";
 import styled from 'styled-components'
 import RecipeCard from "./RecipeCard";
@@ -39,7 +39,7 @@ export default function RecipesList(props){
                 {
                     meals.map(
                         (meal)=>{
-                            return <RecipeCard key={meal.idMeal} meal={meal} />
+                            return(<Link to={`/meal/${meal.idMeal}`} key={meal.idMeal}> <RecipeCard  meal={meal} /> </Link>)
                         }
                     )
                 }
