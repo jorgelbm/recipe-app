@@ -43,7 +43,7 @@ export default function RecipesList(props){
                 {
                     meals.map(
                         (meal)=>{
-                            return(<RecipeCard key={meal.idMeal} meal={meal} favoriteMeals={props.favoriteMeals} addToFavorites={props.addFavoriteMeal} />)
+                            return(<RecipeCard key={meal.idMeal} meal={meal} favoriteMeals={props.favoriteMeals} addToFavorites={props.addFavoriteMeal} isSearch={isSearch}/>)
                         }
                     )
                 }

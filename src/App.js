@@ -45,11 +45,12 @@ const RandomRecipes = styled.div`
 `
 function App() {
 
-  const [favoriteMealsId, setFavoriteMealsId] = useState([52772,52771, 52773])
+  const [favoriteMealsId, setFavoriteMealsId] = useState(JSON.parse(localStorage.getItem("favorites")))
   const [favoriteMeals, setFavoriteMeals] = useState([])
 
   useEffect(
     ()=>{
+      console.log("useeffetct-app")
       const fetchSearch = async () => {
         let fetch_array = []
         setFavoriteMeals([])
@@ -79,14 +80,14 @@ function App() {
             <FavoritesRecipes>
               {favoriteMeals.map(
                 (meal) => {
-                  return( <RecipeCard key={meal.idMeal} meal={meal} favoriteMeals={favoriteMealsId} addToFavorites={setFavoriteMealsId} />)
+                  return( <RecipeCard key={meal.idMeal} meal={meal} favoriteMeals={favoriteMealsId} addToFavorites={setFavoriteMealsId} isSearch={false} />)
                 }
                 )
               }
             </FavoritesRecipes>
             <RandomRecipes>
               <Titulo>Random Recipe</Titulo>
-              <RecipesList favoriteMeals={favoriteMealsId} addFavoriteMeal={setFavoriteMealsId}></RecipesList>
+              <RecipesList favoriteMeals={favoriteMealsId} addFavoriteMeal={setFavoriteMealsId} isSearch={false}></RecipesList>
             </RandomRecipes>
           </Container>
         </Main>
