@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import styled from 'styled-components'
-import FavoritesRecipesList from './components/FavoritesRecipesList';
 import RecipesList from './components/RecipesList';
 import SearchBox from './components/SearchBox';
 import SiteNavbar from './components/SiteNavbar';
