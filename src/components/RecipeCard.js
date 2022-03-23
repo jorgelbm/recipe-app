@@ -1,6 +1,7 @@
 import styled from 'styled-components'
-
+import { Link } from 'react-router-dom'
 const Card = styled.div`
+    position: relative;
     display: flex;
     flex-direction: column;
     border: 1px solid #EF233C;
@@ -23,13 +24,36 @@ const Descricao = styled.div`
     padding: 0 1em;
     color: #2B2D42;
 `
+
+const BotaoAddFavoritos = styled.button`
+    position: absolute;
+    top: 1%;
+    right: 1%;
+    cursor: pointer;
+    border: none;
+    background-color: none;
+    border-radius: 50%;
+    padding: 0.45em;
+    color: #EF233C;
+`
 export default function RecipeCard(props){
 
+    const addMealToFavorites = () => {
+         const favoriteMeals = [...props.favoriteMeals]
+         console.log(favoriteMeals)
+        const newFavoriteMeals = [...favoriteMeals, parseInt(props.meal.idMeal)]
+        console.log(newFavoriteMeals)
+        props.addToFavorites(newFavoriteMeals)
+        console.log(props.favoriteMeals)
+    }
    
     return(
         <Card key={props.meal.idMeal}>
+            <BotaoAddFavoritos onClick={addMealToFavorites}>
+                <i className='bi-heart'></i>
+            </BotaoAddFavoritos>
             <Imagem src={props.meal.strMealThumb} />
-            <Titulo>{props.meal.strMeal}</Titulo>
+            <Link to={`/meal/${props.meal.idMeal}`}  style={{textDecoration: 'none'}}><Titulo>{props.meal.strMeal}</Titulo></Link>
             <Descricao>
                 <p><i className='bi-flag'></i> {props.meal.strArea}</p>
                 <p>Category: {props.meal.strCategory}</p>
