@@ -7,10 +7,14 @@ import SearchBox from "../components/SearchBox"
 
 
 const DivReceitas = styled.div`
+    padding: 0 1em;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
+    @media (max-width: 768px){
+        justify-content: center;
+    }
 `
 
 export default function RecipesList(props){

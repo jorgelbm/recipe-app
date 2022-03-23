@@ -12,6 +12,9 @@ const DivReceitas = styled.div`
     flex-direction: row;
     justify-content: space-between;
     flex-wrap: wrap;
+    @media (max-width: 768px){
+        justify-content:center;
+    }
 `
 
 export default function FavoritesRecipesList(props){

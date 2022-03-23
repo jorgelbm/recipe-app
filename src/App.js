@@ -10,8 +10,9 @@ const Container = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items:center;
-    width: 100%;
     max-width: 1080px;
+    padding: 0 1em;
+    color: #2B2D42;
 `
 
 const Main = styled.main`
@@ -27,12 +28,16 @@ const SearchDiv = styled.div`
   align-items: center;
 `  
 const Titulo = styled.h1`
+  width: 100%;
   font-size: 2.5rem;
 `
 const FavoritesRecipes = styled.div`
   width:100%;
 ` 
 const RandomRecipes = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items:center;
   width: 100%;
 `
 function App() {

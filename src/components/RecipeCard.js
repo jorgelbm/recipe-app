@@ -8,7 +8,7 @@ const Card = styled.div`
     overflow: hidden;
     width: 100%;
     max-width: 300px;
-    margin-bottom: 1em;
+    margin: 1em 0.5em
 ` 
 const Imagem = styled.img`
     width: 100%;

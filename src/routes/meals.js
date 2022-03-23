@@ -10,9 +10,11 @@ const Container = styled.div`
     align-items: space-between;
     width: 100%;
     max-width: 1080px;
+    color: #2B2D42;
 `
 const Titulo = styled.h1`
-  font-size: 2.5rem;
+    padding: 0 0.5em;
+    font-size: 2.5rem;
 `
 export default function Meals(){
 
