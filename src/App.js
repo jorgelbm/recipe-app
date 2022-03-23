@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components'
 import FavoritesRecipesList from './components/FavoritesRecipesList';
 import RecipesList from './components/RecipesList';
 import SearchBox from './components/SearchBox';
 import SiteNavbar from './components/SiteNavbar';
-
+import axios from 'axios';
+import RecipeCard from './components/RecipeCard';
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -32,7 +33,10 @@ const Titulo = styled.h1`
   font-size: 2.5rem;
 `
 const FavoritesRecipes = styled.div`
-  width:100%;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
 ` 
 const RandomRecipes = styled.div`
   display: flex;
@@ -42,8 +46,26 @@ const RandomRecipes = styled.div`
 `
 function App() {
 
-  const [favoriteMeals, setFavoriteMeals] = useState([52772,52771, 52773])
+  const [favoriteMealsId, setFavoriteMealsId] = useState([52772,52771, 52773])
+  const [favoriteMeals, setFavoriteMeals] = useState([])
 
+  useEffect(
+    ()=>{
+      const fetchSearch = async () => {
+        let fetch_array = []
+        setFavoriteMeals([])
+        for (const mealId of favoriteMealsId){
+            const res = await axios.get(
+                `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
+            );
+            fetch_array = [...fetch_array, res.data.meals[0]]
+        }
+
+        setFavoriteMeals(fetch_array)
+        };
+    fetchSearch()
+    }, [favoriteMealsId]
+  )
   return (
 
       <div>
@@ -54,13 +76,18 @@ function App() {
               <Titulo>Search a meal</Titulo>
               <SearchBox></SearchBox>
             </SearchDiv>
+            <Titulo>Favorites Recipes</Titulo>
             <FavoritesRecipes>
-              <Titulo>Favorites Recipes</Titulo>
-              <FavoritesRecipesList favoriteMeals={favoriteMeals}></FavoritesRecipesList>
+              {favoriteMeals.map(
+                (meal) => {
+                  return( <RecipeCard key={meal.idMeal} meal={meal} favoriteMeals={favoriteMealsId} addToFavorites={setFavoriteMealsId} />)
+                }
+                )
+              }
             </FavoritesRecipes>
             <RandomRecipes>
               <Titulo>Random Recipe</Titulo>
-              <RecipesList></RecipesList>
+              <RecipesList favoriteMeals={favoriteMealsId} addFavoriteMeal={setFavoriteMealsId}></RecipesList>
             </RandomRecipes>
           </Container>
         </Main>
