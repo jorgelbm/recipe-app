@@ -5,6 +5,7 @@ import SearchBox from './components/SearchBox';
 import SiteNavbar from './components/SiteNavbar';
 import axios from 'axios';
 import RecipeCard from './components/RecipeCard';
+import EmptyList from './components/EmptyList';
 const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -45,6 +46,10 @@ const RandomRecipes = styled.div`
 `
 function App() {
 
+  if(!localStorage.getItem("favorites")){
+    localStorage.setItem("favorites","[]")
+  }
+  
   const [favoriteMealsId, setFavoriteMealsId] = useState(JSON.parse(localStorage.getItem("favorites")))
   const [favoriteMeals, setFavoriteMeals] = useState([])
 
@@ -53,7 +58,6 @@ function App() {
       console.log("useeffetct-app")
       const fetchSearch = async () => {
         let fetch_array = []
-        setFavoriteMeals([])
         for (const mealId of favoriteMealsId){
             const res = await axios.get(
                 `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${mealId}`
@@ -83,6 +87,9 @@ function App() {
                   return( <RecipeCard key={meal.idMeal} meal={meal} favoriteMeals={favoriteMealsId} addToFavorites={setFavoriteMealsId} isSearch={false} />)
                 }
                 )
+              }
+              {
+                favoriteMealsId.length==0?<EmptyList />: ''
               }
             </FavoritesRecipes>
             <RandomRecipes>
