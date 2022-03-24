@@ -46,9 +46,9 @@ export default function SiteNavbar(){
             <img src={process.env.PUBLIC_URL + '/recipes_app_logo.png'} style={{width: '75px'}}></img>
           </NavbarLogo>
           <NavbarLinkList>
-            <NavbarLink><Link to="/almoco" style={{textDecoration: 'none', color: '#EDF2F4'}}>Almoco</Link></NavbarLink>
-            <NavbarLink><Link to="/cafe-da-manha" style={{textDecoration: 'none', color: '#EDF2F4'}}>Café da manhã</Link></NavbarLink>
-            <NavbarLink><Link to="/jantar" style={{textDecoration: 'none', color: '#EDF2F4'}}>Jantar</Link></NavbarLink>
+            <NavbarLink><Link to="/almoco" style={{textDecoration: 'none', color: '#FFFFFF'}}>Lunch</Link></NavbarLink>
+            <NavbarLink><Link to="/cafe-da-manha" style={{textDecoration: 'none', color: '#FFFFFF'}}>Breakfast</Link></NavbarLink>
+            <NavbarLink><Link to="/jantar" style={{textDecoration: 'none', color: '#FFFFFF'}}>Dinner</Link></NavbarLink>
           </NavbarLinkList>
           </Container>
         </Navbar>
